@@ -7,7 +7,7 @@
     <ProjectGuid>{EC39DCD5-2011-46DC-BFDE-8AB4970C5629}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TDD_Day2_PotterShoppingCart</RootNamespace>
+    <RootNamespace>PotterBookStore</RootNamespace>
     <AssemblyName>TDD_Day2_PotterShoppingCart</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Book.cs" />
+    <Compile Include="PotterShoppingCart.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
