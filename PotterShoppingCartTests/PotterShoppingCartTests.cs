@@ -9,28 +9,28 @@ namespace PotterBookStoreTests
     {
         [TestMethod]
         
-        public void CalculateTotalPriceTest_Scenario1_Potter1x1_Returns_100()
+        public void CalculateSalePriceTest_Scenario1_Potter1x1_Returns_100()
         {
             //Assign
             var books = GetBooks(1, 0, 0, 0, 0);
             var shoppingCart = new PotterShoppingCart();
 
             //Act
-            var actual = shoppingCart.CalculateTotalPrice(books);
+            var actual = shoppingCart.CalculateSalePrice(books);
 
             //Assert
             var expected = 100;
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CalculateTotalPriceTest_Scenario2_Potter1x1_Potter2x1_Returns_190()
+        public void CalculateSalePriceTest_Scenario2_Potter1x1_Potter2x1_Returns_190()
         {
             //Assign
             var books = GetBooks(1, 1, 0, 0, 0);
             var shoppingCart = new PotterShoppingCart();
 
             //Act
-            var actual = shoppingCart.CalculateTotalPrice(books);
+            var actual = shoppingCart.CalculateSalePrice(books);
 
             //Assert
             var expected = 190;
