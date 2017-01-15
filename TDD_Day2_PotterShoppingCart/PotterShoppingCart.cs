@@ -24,6 +24,12 @@ namespace PotterBookStore
             var counts_EachBookToCalculateDiscount = books.Select(book => book.count);
             decimal discount = 0;
 
+            if (IsAnySet_PercentDiscount(counts_EachBookToCalculateDiscount, Discount.TwentyFive_PercentOff))
+            {
+                int sets_InDiscountCondition = CalculateSetsInDiscountCondition(counts_EachBookToCalculateDiscount);
+                discount += (sets_InDiscountCondition) * GetDiscountPerSet(Discount.TwentyFive_PercentOff);
+            }
+
             if (IsAnySet_PercentDiscount(counts_EachBookToCalculateDiscount, Discount.Twenty_PercentOff))
             {
                 int sets_InDiscountCondition = CalculateSetsInDiscountCondition(counts_EachBookToCalculateDiscount);
@@ -49,8 +55,12 @@ namespace PotterBookStore
         {
             switch (discount)
             {
+                case Discount.TwentyFive_PercentOff:
+                    return 25 * 5;
+
                 case Discount.Twenty_PercentOff:
                     return 20 * 4;
+
                 case Discount.Five_PercentOff:
                     return 5 * 2;
 
@@ -73,7 +83,6 @@ namespace PotterBookStore
 
             switch (discountOption)
             {
-
                 case Discount.Five_PercentOff:
                     HowManyBookCount_Equals_Zero = 3;
                     break;
@@ -84,6 +93,10 @@ namespace PotterBookStore
 
                 case Discount.Twenty_PercentOff:
                     HowManyBookCount_Equals_Zero = 1;
+                    break;
+
+                case Discount.TwentyFive_PercentOff:
+                    HowManyBookCount_Equals_Zero = 0;
                     break;
 
                 default:
@@ -99,6 +112,7 @@ namespace PotterBookStore
             Five_PercentOff,
             Ten_PercentOff,
             Twenty_PercentOff,
+            TwentyFive_PercentOff,
         }
     }
 }
