@@ -107,6 +107,7 @@ namespace PotterBookStoreTests
             var expected = 460;
             Assert.AreEqual(expected, actual);
         }
+
         private IEnumerable<Book> GetBooks(int countOfPotter1, int countOfPotter2, int countOfPotter3, int countOfPotter4, int countOfPotter5)
         {
             return new List<Book> {

@@ -24,28 +24,29 @@ namespace PotterBookStore
             var counts_EachBookToCalculateDiscount = books.Select(book => book.count);
             decimal discount = 0;
 
-            discount =
-              CalculateEachDiscountBy(DiscountOption.TwentyFive_PercentOff, counts_EachBookToCalculateDiscount)
-            + CalculateEachDiscountBy(DiscountOption.Twenty_PercentOff, counts_EachBookToCalculateDiscount)
-            + CalculateEachDiscountBy(DiscountOption.Ten_PercentOff, counts_EachBookToCalculateDiscount)
-            + CalculateEachDiscountBy(DiscountOption.Five_PercentOff, counts_EachBookToCalculateDiscount);
-
+            var discount_25off = CalculateEachDiscountBy(DiscountOption.TwentyFive_PercentOff,ref counts_EachBookToCalculateDiscount);
+            var discount_20off = CalculateEachDiscountBy(DiscountOption.Twenty_PercentOff,ref  counts_EachBookToCalculateDiscount);
+            var discount_10off = CalculateEachDiscountBy(DiscountOption.Ten_PercentOff, ref counts_EachBookToCalculateDiscount);
+            var discount_5off = CalculateEachDiscountBy(DiscountOption.Five_PercentOff,ref counts_EachBookToCalculateDiscount);
+            discount = discount_25off + discount_20off + discount_10off + discount_5off;
             return discount;
         }
 
-        private decimal CalculateEachDiscountBy(DiscountOption discountOption, IEnumerable<int> counts_EachBookToCalculateDiscount)
+        private decimal CalculateEachDiscountBy(DiscountOption discountOption,ref IEnumerable<int> counts_EachBookToCalculateDiscount)
         {
             if (IsAnySet_of(discountOption, counts_EachBookToCalculateDiscount))
             {
-                int sets_InDiscountCondition = CalculateSetsInDiscountCondition(counts_EachBookToCalculateDiscount);
+                int sets_InDiscountCondition = CalculateSetsInDiscountCondition(ref counts_EachBookToCalculateDiscount);
                 return (sets_InDiscountCondition) * GetDiscountPerSet(discountOption);
             }
             return 0;
         }
 
-        private static int CalculateSetsInDiscountCondition(IEnumerable<int> counts_EachBookToCalculateDiscount)
+        private static int CalculateSetsInDiscountCondition(ref IEnumerable<int> counts_EachBookToCalculateDiscount)
         {
-            return counts_EachBookToCalculateDiscount.Where(countOfBook => countOfBook != 0).Select(p => p).Min();
+            var calculatedSets= counts_EachBookToCalculateDiscount.Where(countOfBook => countOfBook != 0).Select(p => p).Min();
+            counts_EachBookToCalculateDiscount = counts_EachBookToCalculateDiscount.Select(p => (p == 0) ? p :  p - calculatedSets);
+            return calculatedSets;
         }
 
         private int GetDiscountPerSet(DiscountOption discount)
