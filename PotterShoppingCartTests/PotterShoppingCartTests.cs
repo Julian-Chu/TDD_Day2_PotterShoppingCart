@@ -8,7 +8,8 @@ namespace PotterBookStoreTests
     public class PotterShoppingCartTests
     {
         [TestMethod]
-        public void CalculateTotalPriceTest_Potter1_1_Returns_100()
+        
+        public void CalculateTotalPriceTest_Scenario1_Potter1_1_Returns_100()
         {
             //Assign
             var books = GetBooks(1, 0, 0, 0, 0);

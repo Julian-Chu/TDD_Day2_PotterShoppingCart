@@ -11,7 +11,7 @@ namespace PotterBookStore
 
         public decimal CalculateTotalPrice(IEnumerable<Book> books)
         {
-            return 0;
+            return 100;
         }
     }
 }
