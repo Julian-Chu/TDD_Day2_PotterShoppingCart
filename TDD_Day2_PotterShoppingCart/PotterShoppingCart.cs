@@ -38,8 +38,8 @@ namespace PotterBookStore
 
             if (IsAnySet_PercentDiscount(counts_EachBookToCalculateDiscount, Discount.Five_PercentOff))
             {
-                var groupSize_5_Percent_discount = counts_EachBookToCalculateDiscount.Where(countOfBook => countOfBook != 0).Select(p => p).Min();
-                discount += (groupSize_5_Percent_discount) * 2 * 5;
+                int sets_InDiscountCondition = CalculateSetsInDiscountCondition(counts_EachBookToCalculateDiscount);
+                discount += (sets_InDiscountCondition) * GetDiscountPerSet(Discount.Five_PercentOff);
             }
 
             return discount;
