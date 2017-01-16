@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="PotterDiscount.cs" />
+    <Compile Include="PotterDiscountCalculator.cs" />
     <Compile Include="PotterShoppingCart.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
