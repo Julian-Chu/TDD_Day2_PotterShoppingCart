@@ -48,7 +48,7 @@ namespace PotterBookStoreTests
             var actual = shoppingCart.CalculateSalePrice(books);
 
             //Assert
-            var expected = 190;
+            var expected = 270;
             Assert.AreEqual(expected, actual);
         }
 
