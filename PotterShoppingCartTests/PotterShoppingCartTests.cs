@@ -68,7 +68,7 @@ namespace PotterBookStoreTests
         }
 
         [TestMethod]
-        public void CalculateSalePriceTest_Scenario5_Potter1x1_Potter2x1_Potter3x1_Returns_Potter4x1_Potter5x1_375()
+        public void CalculateSalePriceTest_Scenario5_Potter1x1_Potter2x1_Potter3x1_Potter4x1_Potter5x1_Returns_375()
         {
             //Assign
             var books = GetBooks(1, 1, 1, 1, 1);
@@ -79,6 +79,21 @@ namespace PotterBookStoreTests
 
             //Assert
             var expected = 375;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CalculateSalePriceTest_Scenario6_Potter1x1_Potter2x1_Potter3x2_Returns_370()
+        {
+            //Assign
+            var books = GetBooks(1, 1, 2, 0, 0);
+            var shoppingCart = new PotterShoppingCart();
+
+            //Act
+            var actual = shoppingCart.CalculateSalePrice(books);
+
+            //Assert
+            var expected = 370;
             Assert.AreEqual(expected, actual);
         }
 
