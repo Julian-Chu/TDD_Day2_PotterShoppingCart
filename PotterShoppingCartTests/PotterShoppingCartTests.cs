@@ -67,6 +67,21 @@ namespace PotterBookStoreTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void CalculateSalePriceTest_Scenario5_Potter1x1_Potter2x1_Potter3x1_Returns_Potter4x1_Potter5x1_375()
+        {
+            //Assign
+            var books = GetBooks(1, 1, 1, 1, 1);
+            var shoppingCart = new PotterShoppingCart();
+
+            //Act
+            var actual = shoppingCart.CalculateSalePrice(books);
+
+            //Assert
+            var expected = 375;
+            Assert.AreEqual(expected, actual);
+        }
+
         private IEnumerable<Book> GetBooks(int Potter1, int Potter2, int Potter3, int Potter4, int Potter5)
         {
             return new List<Book> {
