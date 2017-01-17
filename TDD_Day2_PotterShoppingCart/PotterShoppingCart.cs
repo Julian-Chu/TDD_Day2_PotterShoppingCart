@@ -32,6 +32,8 @@ namespace PotterBookStore
                 discount = 0.9;
             if (countOfBooks == 4)
                 discount = 0.8;
+            if (countOfBooks == 5)
+                discount = 0.75;
             return discount;
         }
     }
