@@ -10,12 +10,16 @@ namespace PotterBookStore
         {
         }
 
-        public decimal CalculateSalePrice(IEnumerable<Book> books)
+        public double CalculateSalePrice(IEnumerable<Book> books)
         {
-            decimal pricePerBook = 100;
+            double pricePerBook = 100;
             int countOfBooks = books.Select(book => book.count).Sum();
+            double discount = 1;
 
-            decimal salePrice= countOfBooks * pricePerBook;
+            if (countOfBooks == 2)
+                discount = 0.95;
+
+            double salePrice= countOfBooks * pricePerBook* discount;
             return salePrice;
         }
     }
