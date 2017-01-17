@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PotterBookStore
 {
@@ -9,9 +10,13 @@ namespace PotterBookStore
         {
         }
 
-        public decimal CalculateTotalPrice(IEnumerable<Book> books)
+        public decimal CalculateSalePrice(IEnumerable<Book> books)
         {
-            return 0;
+            decimal pricePerBook = 100;
+            int countOfBooks = books.Select(book => book.count).Sum();
+
+            decimal salePrice= countOfBooks * pricePerBook;
+            return salePrice;
         }
     }
 }

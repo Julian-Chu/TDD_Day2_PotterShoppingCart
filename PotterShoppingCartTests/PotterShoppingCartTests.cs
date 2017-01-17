@@ -15,21 +15,21 @@ namespace PotterBookStoreTests
             var shoppingCart = new PotterShoppingCart();
 
             //Act
-            var actual = shoppingCart.CalculateTotalPrice(books);
+            var actual = shoppingCart.CalculateSalePrice(books);
 
             //Assert
             var expected = 100;
             Assert.AreEqual(expected, actual);
         }
 
-        private IEnumerable<Book> GetBooks(int v1, int v2, int v3, int v4, int v5)
+        private IEnumerable<Book> GetBooks(int Potter1, int Potter2, int Potter3, int Potter4, int Potter5)
         {
             return new List<Book> {
-                new Book { count=v1 },
-                new Book { count=v2 },
-                new Book { count=v3 },
-                new Book { count=v4 },
-                new Book { count=v5 }
+                new Book("Potter1") { count=Potter1 },
+                new Book("Potter2") { count=Potter2 },
+                new Book("Potter3") { count=Potter3 },
+                new Book("Potter4") { count=Potter4 },
+                new Book("Potter5") { count=Potter5 }
             };
         }
     }
