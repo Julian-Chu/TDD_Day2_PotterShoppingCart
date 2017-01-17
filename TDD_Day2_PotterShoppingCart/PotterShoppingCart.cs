@@ -5,11 +5,11 @@ namespace PotterBookStore
 {
     public class PotterShoppingCart
     {
-        private Dictionary<int, double> _discountByCountOfBooks;
+        private Dictionary<int, double> _discountByHowManyBooksInASet;
 
         public PotterShoppingCart()
         {
-            _discountByCountOfBooks = new Dictionary<int, double>()
+            _discountByHowManyBooksInASet = new Dictionary<int, double>()
             {
                 { 1,1 },
                 { 2,0.95 },
@@ -22,13 +22,26 @@ namespace PotterBookStore
         public double CalculateSalePrice(IEnumerable<Book> books)
         {
             double pricePerBook = 100;
-            int countOfBooks = books.Select(book => book.count).Sum();
-            double discount = 1;
-            discount = _discountByCountOfBooks[countOfBooks];
+            int oneSet = 1;
 
-            double salePrice = countOfBooks * pricePerBook * discount;
+            int countOfBooks = books.Sum(book => book.count);
+            var countsOfEachBook = books.Select(book => book.count);
+
+            int howManyBooksInASet = countsOfEachBook.Where(BookCountMoreThanZero()).Count();
+            double salePriceOfASet = howManyBooksInASet * oneSet * pricePerBook * _discountByHowManyBooksInASet[howManyBooksInASet];
+
+            int booksCountNoDiscount = countOfBooks - howManyBooksInASet;
+            double salePriceofNoSet = booksCountNoDiscount * pricePerBook;
+
+            double salePrice = salePriceOfASet + salePriceofNoSet;
             return salePrice;
         }
+
+        private static System.Func<int, bool> BookCountMoreThanZero()
+        {
+            return bookCount => bookCount > 0;
+        }
+
 
     }
 }
