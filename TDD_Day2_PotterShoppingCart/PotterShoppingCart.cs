@@ -21,6 +21,8 @@ namespace PotterBookStore
                 discount = 0.95;
             if (countOfBooks == 3)
                 discount = 0.9;
+            if (countOfBooks == 4)
+                discount = 0.8;
 
             double salePrice= countOfBooks * pricePerBook* discount;
             return salePrice;
