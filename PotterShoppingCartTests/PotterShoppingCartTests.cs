@@ -8,7 +8,7 @@ namespace PotterBookStoreTests
     public class PotterShoppingCartTests
     {
         [TestMethod]
-        public void CalculateTotalPriceTest_Potter1_1_Returns_100()
+        public void CalculateSalePriceTest_Scenario1_Potter1x1_Returns_100()
         {
             //Assign
             var books = GetBooks(1, 0, 0, 0, 0);
@@ -19,6 +19,21 @@ namespace PotterBookStoreTests
 
             //Assert
             var expected = 100;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CalculateSalePriceTest_Scenario2_Potter1x1_Potter2x1_Returns_190()
+        {
+            //Assign
+            var books = GetBooks(1, 1, 0, 0, 0);
+            var shoppingCart = new PotterShoppingCart();
+
+            //Act
+            var actual = shoppingCart.CalculateSalePrice(books);
+
+            //Assert
+            var expected = 190;
             Assert.AreEqual(expected, actual);
         }
 
